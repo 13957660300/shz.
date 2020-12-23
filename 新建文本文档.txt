@@ -1,0 +1,54 @@
+import random
+import tkinter as tk
+import tkinter.messagebox
+root = tk.Tk()
+root.title('猜随机数字大小')
+frame = tk.Frame(root)
+frame.pack(padx=100, pady=100)
+lable1 = tk.Label(frame,text='可猜次数').grid(row=0,column=0)
+lable3 = tk.Label(frame,text='——————分割线——————').grid(row=2,column=1)
+lable2 = tk.Label(frame,text='结果：').grid(row=4,column=0)
+t0=tk.StringVar()
+lable3 = tk.Label(frame,textvariable=t0).grid(row=4,column=1)
+
+num=0
+time=0
+def RD1():
+    global num
+    global time
+    num = random.randint(0,100)
+    time=0
+def RD2():
+    global num
+    global time
+    try:
+        x = int(e1.get())
+        if time < x:
+            a = int(e2.get())
+            if a == num:
+                t0.set("恭喜，你猜中了")
+                return
+            elif a < num:
+                t0.set("小了")
+                e2.delete(0, 'end')
+            elif a > num:
+                t0.set("大了")
+                e2.delete(0, 'end')
+            time = time + 1
+        if time == x:
+            t0.set("次数用完")
+            e2.d
+            t0.set("次数用完")
+            e2.delete(0, 'end')
+    except:
+        tkinter.messagebox.showerror(title='Error', message='请输入数字')
+
+t1=tk.StringVar()
+t2=tk.StringVar()
+e1 = tk.Entry(frame,textvariable=t1, width=20)
+e1.grid(row=0, column=1, padx=10, pady=5)
+e2 = tk.Entry(frame,textvariable=t2, width=20)
+e2.grid(row=3, column=1, padx=10, pady=5)
+button = tk.Button(frame,text='开始游戏/重置',width=10,command=RD1).grid(row=1,column=1,sticky='w',padx=100,pady=10)
+button2 = tk.Button(frame,text='判断',width=10,command=RD2).grid(row=5,column=1,sticky='w',padx=100,pady=10)
+tk.mainloop()
